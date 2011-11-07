@@ -37,22 +37,22 @@ class ProgressBar
     protected static $done = 0;
 
     /**
-     * The format string 
+     * The format string used for the rendered status bar - see $defaults
      */
     protected static $format;
 
     /**
-     * message to display prefixing the progress bar
+     * message to display prefixing the progress bar text
      */
     protected static $message;
 
     /**
-     * How many chars to use for the progress bar 
+     * How many chars to use for the progress bar itself. Not to be confused with $width
      */
     protected static $size = 30;
 
     /**
-     * When did we start 
+     * When did we start (timestamp)
      */
     protected static $start;
 
@@ -68,12 +68,12 @@ class ProgressBar
     protected static $total;
 
     /**
-     * Show a progress bar, allowing to override the total or size (for this and subsequent bars)
+     * Show a progress bar, actually not usually called explicitly. Called by next()
      * 
-     * @param int $done what fraction of $total to set as progress
+     * @param int $done what fraction of $total to set as progress uses internal counter if not passed
      * 
      * @static
-     * @return void
+     * @return string, the formatted progress bar prefixed with a carriage return
      */
     public static function display($done = null)
     {
@@ -150,7 +150,7 @@ class ProgressBar
     }
 
     /**
-     * finish 
+     * reset internal state, and send a new line so that the progress bar text is "finished"
      * 
      * @static
      * @return string, a new line
@@ -162,9 +162,9 @@ class ProgressBar
     }
 
     /**
-     * change the message  used without calling set
+     * change the message to be used the next time the display method is called
      * 
-     * @param string $message the string to display with the progress bar
+     * @param string $message the string to display
      *
      * @static
      * @return void
@@ -175,13 +175,13 @@ class ProgressBar
     }
 
     /**
-     * Increment the internal counter, and returns the result of set
+     * Increment the internal counter, and returns the result of display
      * 
      * @param int    $inc     Amount to increment the internal counter
      * @param string $message If passed, overrides the existing message
      *
      * @static
-     * @return void
+     * @return string - the progress bar
      */
     public static function next($inc = 1, $message = '')
     {
@@ -195,16 +195,14 @@ class ProgressBar
     }
 
     /**
-     * start 
-     *
-     * Initialize a bar, resets the start timer and the size
+     * Initialize a progress bar
      * 
      * @param mixed $total   number of times we're going to call set
      * @param int   $message message to prefix the bar with
      * @param int   $options overrides for default options
      * 
      * @static
-     * @return void
+     * @return string - the progress bar string with 0 progress
      */
     public static function start($total = null, $message = '', $options = array())
     {
@@ -222,12 +220,10 @@ class ProgressBar
 
         self::setWidth($options['width']);
 
-        return self::next(0);
+        return self::display();
     }
 
     /**
-     * humanTime 
-     *
      * Convert a number of seconds into something human readable like "2 days, 4 hrs"
      * 
      * @param int    $seconds how far in the future/past to display
@@ -282,7 +278,7 @@ class ProgressBar
     }
 
     /**
-     * If not set explicitly use the full width of the terminal window
+     * Set the width the rendered text must fit in
      * 
      * @param int $width passed in options
      *
