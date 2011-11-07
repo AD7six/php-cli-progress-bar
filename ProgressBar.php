@@ -7,7 +7,7 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2012, Andy Dawson
+ * @copyright     Copyright 2011, Andy Dawson
  * @link          http://ad7six.com
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -25,7 +25,7 @@ class ProgressBar
      * Merged with options passed in start function 
      */
     protected static $defaults = array(
-        'format' => "\r:message::padding:%.01f%% %d/%d ETC: %s. Elapsed: %s [%s]",
+        'format' => "\r:message::padding:%.01f%% %2\$d/%3\$d ETC: %4\$s. Elapsed: %5\$s [%6\$s]",
         'message' => 'Running',
         'size' => 30,
         'width' => null
