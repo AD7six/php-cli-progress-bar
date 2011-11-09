@@ -167,19 +167,6 @@ class ProgressBar
     }
 
     /**
-     * change the message to be used the next time the display method is called
-     * 
-     * @param string $message the string to display
-     *
-     * @static
-     * @return void
-     */
-    public static function message($message = '')
-    {
-        self::$message = $message;
-    }
-
-    /**
      * Increment the internal counter, and returns the result of display
      * 
      * @param int    $inc     Amount to increment the internal counter
@@ -228,6 +215,32 @@ class ProgressBar
         self::$start = $options['start'];
         self::$total = $options['total'];
         self::setWidth($options['width']);
+    }
+
+    /**
+     * change the message to be used the next time the display method is called
+     * 
+     * @param string $message the string to display
+     *
+     * @static
+     * @return void
+     */
+    public static function setMessage($message = '')
+    {
+        self::$message = $message;
+    }
+
+    /**
+     * change the total on a running progress bar
+     * 
+     * @param int $total the new number of times we're expecting to run for
+     *
+     * @static
+     * @return void
+     */
+    public static function setTotal($total = '')
+    {
+        self::$total = $total;
     }
 
     /**

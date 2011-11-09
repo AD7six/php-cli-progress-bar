@@ -6,7 +6,7 @@ $size = 100;
 echo ProgressBar::start($size, "Starting in about 5 seconds");
 usleep(5000000);
 
-ProgressBar::message('Go!');
+ProgressBar::setMessage('Go!');
 for ($i = 1; $i <= $size; $i++) {
     if ($i % 20) {
         echo ProgressBar::next();
