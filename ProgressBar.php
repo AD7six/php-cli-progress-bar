@@ -32,6 +32,11 @@ class ProgressBar
     );
 
     /**
+     * Runtime options 
+     */
+    protected static $options = array();
+
+    /**
      * How much have we done already 
      */
     protected static $done = 0;
@@ -157,7 +162,7 @@ class ProgressBar
      */
     public static function finish()
     {
-        self::start();
+        self::reset();
         return "\n";
     }
 
@@ -195,6 +200,37 @@ class ProgressBar
     }
 
     /**
+     * Called by start and finish
+     * 
+     * @param array $options array
+     *
+     * @static
+     * @return void
+     */
+    public static function reset($options = array())
+    {
+        $options = array_merge(self::$defaults, $options);
+
+        if (empty($options['done'])) {
+            $options['done'] = 0;
+        }
+        if (empty($options['start'])) {
+            $options['start'] = time();
+        }
+        if (empty($options['total'])) {
+            $options['total'] = 0;
+        }
+
+        self::$done = $options['done'];
+        self::$format = $options['format'];
+        self::$message = $options['message'];
+        self::$size = $options['size'];
+        self::$start = $options['start'];
+        self::$total = $options['total'];
+        self::setWidth($options['width']);
+    }
+
+    /**
      * Initialize a progress bar
      * 
      * @param mixed $total   number of times we're going to call set
@@ -209,16 +245,8 @@ class ProgressBar
         if ($message) {
             $options['message'] = $message;
         }
-        $options = array_merge(self::$defaults, $options);
-
-        self::$done = 0;
-        self::$format = $options['format'];
-        self::$message = $options['message'];
-        self::$size = $options['size'];
-        self::$start = time();
-        self::$total = $total;
-
-        self::setWidth($options['width']);
+        $options['start'] = time();
+        self::reset($options);
 
         return self::display();
     }
