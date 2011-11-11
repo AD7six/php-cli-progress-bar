@@ -258,6 +258,7 @@ class ProgressBar
         if ($message) {
             $options['message'] = $message;
         }
+        $options['total'] = $total;
         $options['start'] = time();
         self::reset($options);
 
