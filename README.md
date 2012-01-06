@@ -1,8 +1,8 @@
-# PHP CLI progress bar ![Project status](http://stillmaintained.com/AD7six/php-cli-progress-bar.png)
+# PHP CLI progress bar ![Project status](http://stillmaintained.com/AD7six/php-cli-progress-bar.png?20120106)
 
 A progress bar for php scripts.
 
-Looks like this: 
+Looks like this:
 
 	Some Message         46.0% 46/100 ETC: 4 secs. Elapsed: 4 secs [=============>                 ]
 
