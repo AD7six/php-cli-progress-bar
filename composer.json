@@ -1,5 +1,5 @@
 {
-	"name": "AD7six/php-cli-progress-bar",
+	"name": "ad7six/php-cli-progress-bar",
 	"type": "php-plugin",
 	"keywords": ["php", "Shell", "cli", "ProgressBar", "Progress", "Bar"],
 	"description": "PHP Plugin for displaying a progress bar in shell operations",
