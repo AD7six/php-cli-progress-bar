@@ -330,7 +330,8 @@ class ProgressBar
     protected static function setWidth($width = null)
     {
         if ($width === null) {
-            if (DIRECTORY_SEPARATOR === '/') {
+            $disabled = explode(',', ini_get('disable_functions'));
+            if (DIRECTORY_SEPARATOR === '/' && !in_array('shell_exec', $disabled) && posix_isatty(0)) {
                 $width = `tput cols`;
             }
             if ($width < 80) {
