@@ -1,4 +1,4 @@
-# PHP CLI progress bar ![Project status](http://stillmaintained.com/AD7six/php-cli-progress-bar.png?20120106)
+# PHP CLI progress bar #ARCHIVED#
 
 A progress bar for php scripts.
 
